@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
 /* ...colocar estilos */
+width: 100vw;
 display: flex;
-justify-content: center;
+flex-direction: column;
 align-items: center;
-height: 100vh;
+justify-content: center;
+
 `
