@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
-import { StyledButton } from "./components/header/Header.style"
+import {  ButtonWithIcon, StyledButton } from "./components/header/Header.style"
 import {  StyledDiv } from "./container/Div.style"
 import { theme, darkThemeColor } from "./theme/theme"
+import { BiBook } from "react-icons/bi";
 
 function App() {
 const [toggleTheme, settoggleTheme] = useState(theme)
@@ -34,7 +35,7 @@ const darkTheme = {
     <ThemeProvider theme={toggleTheme}>
       <GlocablStyle />
       <StyledDiv>
-        <StyledButton onClick={handleTheme} />
+        <ButtonWithIcon onClick={handleTheme} Icon={BiBook} />
       </StyledDiv>
     </ThemeProvider>
   )
