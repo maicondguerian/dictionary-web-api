@@ -4,7 +4,10 @@ import { Header } from "./components/header/Header.style"
 import { theme, darkThemeColor } from "./theme/theme"
 import { StyledDiv } from "./container/Div.style";
 import { SearchBar } from "./components/serach/Input";
-import { BiBook } from "react-icons/bi";
+import { BiBook, BiPlay } from "react-icons/bi";
+import { Main } from "./components/serach/main/Content";
+import { CiPlay1 } from "react-icons/ci";
+
 
 function App() {
   const [toggleTheme, settoggleTheme] = useState(theme)
@@ -27,6 +30,7 @@ function App() {
   const GlobalStyle = createGlobalStyle`
     body{
       background-color: ${props => props.theme.colors.softWhite};
+      font-family: 'Roboto Serif', serif;
       padding: 0;
       margin: 0;
       box-sizing: border-box;
@@ -39,8 +43,9 @@ function App() {
     <ThemeProvider theme={toggleTheme}>
       <GlobalStyle />
       <StyledDiv>
-        <Header Icon={BiBook} size={40} color={'gray'}/>
-      <SearchBar />
+        <Header Icon={BiBook} size={40} color={'gray'} />
+        <SearchBar />
+        <Main Icon={BiPlay} size={55} color={'#0079ff'} />
       </StyledDiv>
     </ThemeProvider>
   )

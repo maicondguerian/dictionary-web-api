@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 const StyledInput = styled.input`
 height: 50px;
-width: 950px;
+width: 900px;
 background-color: transparent;
 border: none;
 outline: none;
-padding: 0 0 0 1rem;
+padding: 0 1rem 0 1rem;
 font-size: 20px;
 
 &{
@@ -22,7 +22,7 @@ font-size: 20px;
 const StyledWrapper = styled.div`
     box-shadow: 0 0.063rem 0.188rem rgb(31 50 81 / 12%), 0 0.063rem 0.125rem rgb(31 50 81 / 24%);
     height: 50px;
-    width:1000px;
+    width: 900px;
     border-radius: 10px;
     display: flex;
     padding: 0 0 0 1rem;

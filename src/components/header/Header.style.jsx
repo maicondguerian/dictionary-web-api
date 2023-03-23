@@ -6,6 +6,8 @@ const StyledHeader = styled.nav`
 width: 100%;
 
 
+
+
 ul{
     display: flex;
     list-style: none;
