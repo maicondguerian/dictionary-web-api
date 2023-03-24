@@ -6,7 +6,9 @@ export const theme = {
         midBlue: '#3463bb',
         softBlue: '#6495ed',
         softWhite: 'rgb(246, 248, 255)',
-        softGray: '#EDEDEC' //#b6b0b0ba'
+        softGray: '#EDEDEC',
+        skyBlue: '#0079ff',
+        darkGray: '#b6b0b0ba'
     }
 }
 
