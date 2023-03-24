@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { MyContext } from "../../context/Mycontext";
 
 const StyledInput = styled.input`
 height: 50px;
@@ -53,13 +55,15 @@ const SearchIcon = ({ size }) => {
 };
 
 export const SearchBar = () => {
+    const { handleKeyboard, handleWord } = useContext(MyContext);
     return (
         <StyledWrapper>
             <StyledInput
                 type="text"
                 placeholder="type a word"
+                onChange={handleKeyboard}
             />
-            <button>
+            <button onClick={handleWord}>
                 <SearchIcon size="25px" />
             </button>
         </StyledWrapper>

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
 import { Header } from "./components/header/Header.style"
 import { theme, darkThemeColor } from "./theme/theme"
@@ -7,18 +7,35 @@ import { SearchBar } from "./components/serach/Input";
 import { BiBook, BiPlay } from "react-icons/bi";
 import { Content } from "./components/content/Content";
 import { MyContext } from "./context/Mycontext";
+import { callApi } from "./api/CallApi";
 
 
 function App() {
-  const [toggleTheme, settoggleTheme] = useState(theme)
+  const [toggleTheme, settoggleTheme] = useState(theme);
+  const [keyboard, setKeyboard] = useState('');
+  const [word, setWord] = useState('');
+  
+  const handleKeyboard = (e) =>{
+    setKeyboard(e.target.value)
+  } 
+
+  const handleWord = () => {
+    callApi(word)
+    .then(resp => resp.json())
+    .then(data => {
+      setWord(data)
+    })
+  }
+
 
   const handleTheme = () => {
     if (toggleTheme === theme) {
       settoggleTheme(darkTheme)
     } else {
       settoggleTheme(theme)
-    }
-  }
+    }  
+  }  
+
 
   const darkTheme = {
     ...theme,
@@ -42,7 +59,7 @@ function App() {
   return (
     <ThemeProvider theme={toggleTheme}>
       <GlobalStyle />
-      <MyContext.Provider value={{ handleTheme }}>
+      <MyContext.Provider value={{ handleTheme, handleKeyboard, handleWord }}>
         <StyledDiv>
           <Header Icon={BiBook} size={40} color={'gray'} />
           <SearchBar />
