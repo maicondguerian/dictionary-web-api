@@ -3,39 +3,43 @@ import { createGlobalStyle, ThemeProvider } from "styled-components"
 import { Header } from "./components/header/Header.style"
 import { theme, darkThemeColor } from "./theme/theme"
 import { StyledDiv } from "./container/Div.style";
-import { SearchBar } from "./components/serach/Input";
-import { BiBook, BiPlay } from "react-icons/bi";
+import { SearchBar } from "./components/search/Input";
+import {  TfiVolume } from "react-icons/tfi";
 import { Content } from "./components/content/Content";
 import { MyContext } from "./context/Mycontext";
-import { callApi } from "./api/CallApi";
+import { TfiBook } from "react-icons/tfi";
+
 
 
 function App() {
   const [toggleTheme, settoggleTheme] = useState(theme);
   const [keyboard, setKeyboard] = useState('');
-  const [word, setWord] = useState('');
-  
-  const handleKeyboard = (e) =>{
-    setKeyboard(e.target.value)
-  } 
+  const [inpWord, setInpWord] = useState('');
 
-  const handleWord = () => {
-    callApi(word)
-    .then(resp => resp.json())
-    .then(data => {
-      setWord(data)
-    })
+  const handleKeyboard = (e) => {
+    setKeyboard(e.target.value);
   }
 
+  const handleWord = () => {
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${keyboard}`)
+      .then((resp) => resp.json())
+      .then(data => {
+        data.forEach((data) => {
+          console.log(data.phonetics[0])
+          console.log(data.word)
+          console.log(data.meanings[2].definitions[3])
+          setInpWord(data)
+        })
+      })
+  }
 
   const handleTheme = () => {
     if (toggleTheme === theme) {
-      settoggleTheme(darkTheme)
+      settoggleTheme(darkTheme);
     } else {
-      settoggleTheme(theme)
-    }  
-  }  
-
+      settoggleTheme(theme);
+    }
+  }
 
   const darkTheme = {
     ...theme,
@@ -61,14 +65,14 @@ function App() {
       <GlobalStyle />
       <MyContext.Provider value={{ handleTheme, handleKeyboard, handleWord }}>
         <StyledDiv>
-          <Header Icon={BiBook} size={40} color={'gray'} />
+          <Header Icon={TfiBook} size={35} color={'000c'} />
           <SearchBar />
-          <Content Icon={BiPlay} size={55} color={'#0079ff'} />
+          <Content Icon={TfiVolume} size={55} color={'#0079ff'} />
         </StyledDiv>
       </MyContext.Provider>
     </ThemeProvider>
   )
 }
 
-export default App
+export default App;
 

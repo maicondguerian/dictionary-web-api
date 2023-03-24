@@ -3,15 +3,14 @@ import styled from "styled-components";
 import { MyContext } from "../../context/Mycontext";
 
 const StyledInput = styled.input`
-height: 50px;
-width: 900px;
-background-color: transparent;
-border: none;
-outline: none;
-padding: 0 1rem 0 1rem;
-font-size: 20px;
+    height: 50px;
+    width: 900px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 20px;
 
-&{
+    &{
     ::placeholder{
         font-size: 20px;
         color: #b6b0b0ba;
@@ -24,7 +23,7 @@ font-size: 20px;
 const StyledWrapper = styled.div`
     box-shadow: 0 0.063rem 0.188rem rgb(31 50 81 / 12%), 0 0.063rem 0.125rem rgb(31 50 81 / 24%);
     height: 50px;
-    width: 900px;
+    width: 950px;
     border-radius: 10px;
     display: flex;
     padding: 0 0 0 1rem;
@@ -34,7 +33,7 @@ const StyledWrapper = styled.div`
         border: none;
         background-color: transparent;
         cursor: pointer;
-        padding: 1rem;
+        padding: 0 1rem;
     }
 
 `
