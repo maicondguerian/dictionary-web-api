@@ -27,7 +27,13 @@ const StyledWrapper = styled.div`
     display: flex;
     padding: 0 0 0 1rem;
     align-items: center;
-  
+
+    button{
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        padding: 1rem;
+    }
 
 `
 const SearchIcon = ({ size }) => {
@@ -49,13 +55,13 @@ const SearchIcon = ({ size }) => {
 export const SearchBar = () => {
     return (
         <StyledWrapper>
-            <span>
-                <SearchIcon size="23px" />
-            </span>
             <StyledInput
                 type="text"
                 placeholder="type a word"
             />
+            <button>
+                <SearchIcon size="25px" />
+            </button>
         </StyledWrapper>
     )
 

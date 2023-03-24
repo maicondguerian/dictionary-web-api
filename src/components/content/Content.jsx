@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 
-const StyledContent = styled.main`
+const StyledContent = styled.div`
     width: 100%;
     
     ul{
@@ -27,15 +27,19 @@ const StyledContent = styled.main`
         }
         
     }
-    button{
+    li:last-child{
         background-color: #0077ff2f;
-        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    
+    button{
+        background-color: transparent;
+        border:none;
         height: 80px;
         width: 80px;
-        border: none;
+        cursor: pointer;
     }
     
      span{
@@ -75,12 +79,12 @@ const StyledDiv = styled.div`
         
 `
 
-export const Main = ({ Icon, size, color }) => {
+export const Content = ({ Icon, size, color }) => {
     return (
         <StyledContent>
             <ul>
                 <li><h1>Keyboard</h1></li>
-                <button>  {Icon ? <Icon size={size} color={color} /> : <></>} </button>
+                 <li> <button>  {Icon ? <Icon size={size} color={color} /> : <></>} </button> </li>
             </ul>
             <span>
                 <h1>/ki:bod/</h1>

@@ -5,8 +5,8 @@ import { theme, darkThemeColor } from "./theme/theme"
 import { StyledDiv } from "./container/Div.style";
 import { SearchBar } from "./components/serach/Input";
 import { BiBook, BiPlay } from "react-icons/bi";
-import { Main } from "./components/serach/main/Content";
-import { CiPlay1 } from "react-icons/ci";
+import { Content } from "./components/content/Content";
+import { MyContext } from "./context/Mycontext";
 
 
 function App() {
@@ -42,11 +42,13 @@ function App() {
   return (
     <ThemeProvider theme={toggleTheme}>
       <GlobalStyle />
-      <StyledDiv>
-        <Header Icon={BiBook} size={40} color={'gray'} />
-        <SearchBar />
-        <Main Icon={BiPlay} size={55} color={'#0079ff'} />
-      </StyledDiv>
+      <MyContext.Provider value={{ handleTheme }}>
+        <StyledDiv>
+          <Header Icon={BiBook} size={40} color={'gray'} />
+          <SearchBar />
+          <Content Icon={BiPlay} size={55} color={'#0079ff'} />
+        </StyledDiv>
+      </MyContext.Provider>
     </ThemeProvider>
   )
 }

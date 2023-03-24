@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { BiBook, BiMoon } from "react-icons/bi";
+import {  HiMoon, HiOutlineSun } from "react-icons/hi";
+import { useContext } from "react";
+import { MyContext } from "../../context/Mycontext";
 
 
 const StyledHeader = styled.nav`
@@ -22,12 +24,34 @@ ul{
     }
 }
 `
-export  const Header = ({Icon, size, color}) =>{
+const StyledButton = styled.button`
+    background-color: transparent;
+    border: none;
+    height: 40px;
+    width: 40px;
+    color: ${props => props.theme.colors.softDark};
+    cursor: pointer;
+`
+
+const Button = ({ Icon, size, color, children, onClick }) => {
+
+    return (
+      <StyledButton size={size} color={color} onClick={onClick}>
+        {Icon ?  <Icon size={size} color={color} /> : <></>}
+        {children}
+      </StyledButton>
+    );
+  };
+  
+export  const Header = ({Icon, size, color, name}) =>{
+    const { handleTheme } = useContext(MyContext)
     return(
         <StyledHeader>
             <ul>
                 <li> {Icon ? <Icon size={size} color={color} /> : <></>} </li>
-                <li> <input type="radio" name="" id="" /><BiMoon size={20} /> </li>
+                <li> 
+                    <Button Icon={HiMoon} size={30} onClick={handleTheme}/>
+                 </li>
             </ul>
         </StyledHeader>
     )
@@ -35,7 +59,7 @@ export  const Header = ({Icon, size, color}) =>{
 } 
 
 // export const StyledButton = styled.button`
-//     height: 60px;
+//     size: 60px;
 //     width: 200px;
 //     padding: 1rem;
 //     border: none;
