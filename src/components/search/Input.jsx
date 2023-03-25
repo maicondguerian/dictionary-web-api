@@ -9,12 +9,12 @@ const StyledInput = styled.input`
     border: none;
     outline: none;
     font-size: 20px;
+    color: ${props => props.theme.colors.softDark};
 
     &{
     ::placeholder{
         font-size: 20px;
-        color: #b6b0b0ba;
-       
+        color: ${props => props.theme.colors.softGray};
     }
 }
 

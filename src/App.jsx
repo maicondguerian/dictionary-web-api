@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
 import { Header } from "./components/header/Header.style"
 import { theme, darkThemeColor } from "./theme/theme"
@@ -65,7 +65,7 @@ function App() {
       <GlobalStyle />
       <MyContext.Provider value={{ handleTheme, handleKeyboard, handleWord }}>
         <StyledDiv>
-          <Header Icon={TfiBook} size={35} color={'000c'} />
+          <Header Icon={TfiBook} size={35} props={'#000c'} />
           <SearchBar />
           <Content Icon={TfiVolume} size={55} color={'#0079ff'} />
         </StyledDiv>

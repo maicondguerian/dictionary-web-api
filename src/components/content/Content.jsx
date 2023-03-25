@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 const StyledContent = styled.div`
-    width: 100%;
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
     
     ul{
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items: center;
         list-style: none;
         padding: 0;
@@ -20,61 +22,99 @@ const StyledContent = styled.div`
         }
         
     }
-    li:last-child{
+    ul:first-of-type li:last-child{
         background-color: #0077ff2f;
     }
     
     button{
         background-color: transparent;
         border:none;
-        height: 80px;
-        width: 80px;
+        height: 70px;
+        width: 70px;
         cursor: pointer;
     }
     
      span{
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
-        margin-left: 2rem;
-
-       
         
         h1{
             font-family: 'Source Code Pro', monospace;
             font-weight: 400;
             color: ${props => props.theme.colors.skyBlue};
             margin: 0;
-            margin-left: 5.5rem;
         }
-        
-        
     }
     
 `
 const StyledDiv = styled.div`
         width: 100%;
         display: flex;
-        justify-content: center;
         align-items: center;
-        margin: 0;
+        margin-top: 2rem;
 
     span:last-of-type{
         border-bottom: solid 1px;
         color: ${props => props.theme.colors.darkGray};
-        width: 850px;
-        margin: 2rem 1.5rem;
+        width: 100%;
+        margin: 2rem 0 2rem 1rem;
     }
 
     span{
         font-size: 28px;
         color: ${props => props.theme.colors.softDark};
+        
     }
 
-   
-        
 `
+const StyledSpan = styled.div`
+    display: flex;
+    /* background-color: yellow; */
+   h2{
+            color: ${props => props.theme.colors.darkGray};
+            font-weight: 200;
+        }
 
+    li{
+            padding: 1rem;
+            background-color: transparent !important;
+            color: ${props => props.theme.colors.softBlue};
+            font-size: 22px;
+
+        }
+
+
+`
+const StyledList = styled.div`
+    width: 100%;
+    /* background-color: #ff00002f; */
+    h2{
+            color: ${props => props.theme.colors.darkGray};
+            font-weight: 200;
+            
+        }
+    
+    
+    ul{
+        display: flex;
+        align-items: baseline;
+        flex-direction:column;
+        list-style:disc;
+        color: ${props => props.theme.colors.softDark};
+        padding-left: 3rem;
+        height: 100%;
+        width: 100%;
+        font-size: 19px;
+        
+
+        li{
+            padding: 1rem;
+            background-color: transparent !important;
+        }
+    }
+
+`
 export const Content = ({ Icon, size, color }) => {
     return (
         <StyledContent>
@@ -90,6 +130,22 @@ export const Content = ({ Icon, size, color }) => {
                 <span>noun</span>
                 <span></span>
             </StyledDiv>
+            <StyledList>
+                <h2>meaning</h2>
+                <ul>
+                    <li>Lorem ipsdddddddddddddddum </li>
+                    <li>teste Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, officia.</li>
+                    <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A eos dicta voluptatibus suscipit atque magnam aperiam in assumenda eveniet modi eius soluta, esse nesciunt. Nostrum iure totam perspiciatis itaque vero obcaecati. Voluptatibus at eius unde? Dolorem sed a adipisci velit sint quae nihil non atque laborum saepe impedit dolorum beatae, facilis architecto. Voluptatibus mollitia, labore ratione animi eveniet eligendi nam corrupti nulla, corporis dolorem architecto nesciunt totam consequuntur repudiandae eos, explicabo voluptatum quasi facilis fugit iusto deleniti? Repellendus, eaque unde ullam tempore magni quo a placeat ratione adipisci fugit accusamus quas, nemo necessitatibus totam voluptas pariatur minus debitis nihil reprehenderit?</li>
+                </ul>
+            </StyledList>
+            <StyledSpan>
+                <ul>
+                    <h2>synomyms</h2>
+                    <li>Lorem ipsum dolor sit.</li>
+
+                </ul>
+            </StyledSpan>
+
         </StyledContent>
     )
 }

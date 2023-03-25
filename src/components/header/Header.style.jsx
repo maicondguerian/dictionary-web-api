@@ -10,8 +10,8 @@ width: 100%;
 ul{
     display: flex;
     list-style: none;
-    justify-content: space-around;
-    padding: 0;
+    justify-content: space-between;
+    padding: 1rem 3rem;
 
     li{
         display: flex;
@@ -30,7 +30,7 @@ const StyledButton = styled.button`
     cursor: pointer;
 `
 
-const Button = ({ Icon, size, color, children, onClick }) => {
+const Button = ({ Icon, size, children, onClick, color }) => {
 
     return (
       <StyledButton size={size} color={color} onClick={onClick}>
@@ -40,12 +40,12 @@ const Button = ({ Icon, size, color, children, onClick }) => {
     );
   };
   
-export  const Header = ({ Icon, size, color }) =>{
+export  const Header = ({ Icon, size, props }) =>{
     const { handleTheme } = useContext(MyContext)
     return(
         <StyledHeader>
             <ul>
-                <li> {Icon ? <Icon size={size} color={color} /> : <></>} </li>
+                <li> {Icon ? <Icon size={size} color={props} /> : <></>} </li>
                 <li> 
                     <Button Icon={HiMoon} size={30} onClick={handleTheme}/>
                  </li>
