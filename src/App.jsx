@@ -2,7 +2,7 @@ import {  useState } from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
 import { Header } from "./components/header/Header.style"
 import { theme, darkThemeColor } from "./theme/theme"
-import { StyledDiv } from "./container/Div.style";
+import { Container } from "./container/Div.style";
 import { SearchBar } from "./components/search/Input";
 import {  TfiVolume } from "react-icons/tfi";
 import { Content } from "./components/content/Content";
@@ -64,11 +64,11 @@ function App() {
     <ThemeProvider theme={toggleTheme}>
       <GlobalStyle />
       <MyContext.Provider value={{ handleTheme, handleKeyboard, handleWord }}>
-        <StyledDiv>
+        <Container>
           <Header Icon={TfiBook} size={35} props={'#000c'} />
           <SearchBar />
           <Content Icon={TfiVolume} size={55} color={'#0079ff'} />
-        </StyledDiv>
+        </Container>
       </MyContext.Provider>
     </ThemeProvider>
   )

@@ -62,9 +62,8 @@ const StyledDiv = styled.div`
     }
 
     span{
-        font-size: 28px;
+        font-size: 23px;
         color: ${props => props.theme.colors.softDark};
-        
     }
 
 `
@@ -145,6 +144,17 @@ export const Content = ({ Icon, size, color }) => {
 
                 </ul>
             </StyledSpan>
+            <StyledDiv>
+                <span>verb</span>
+                <span></span>
+            </StyledDiv>
+            <StyledList>
+                <h2>meaning</h2>
+                <ul>
+                    <li>Lorem ipsdddddddddddddddum </li>
+                    <span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus maxime doloribus architecto iste soluta culpa dolorum velit provident, ea veritatis.</span>
+                </ul>
+            </StyledList>
 
         </StyledContent>
     )

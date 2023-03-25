@@ -5,7 +5,7 @@ import { MyContext } from "../../context/Mycontext";
 
 
 const StyledHeader = styled.nav`
-width: 100%;
+width: 1000px;
 
 ul{
     display: flex;
