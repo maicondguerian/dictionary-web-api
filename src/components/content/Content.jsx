@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { MyContext } from "../../context/Mycontext";
 
 const StyledContent = styled.div`
     width: 1000px;
@@ -83,7 +85,6 @@ const StyledSpan = styled.div`
 
         }
 
-
 `
 const StyledList = styled.div`
     width: 100%;
@@ -93,8 +94,7 @@ const StyledList = styled.div`
             font-weight: 200;
             
         }
-    
-    
+
     ul{
         display: flex;
         align-items: baseline;
@@ -106,23 +106,23 @@ const StyledList = styled.div`
         width: 100%;
         font-size: 19px;
         
-
         li{
             padding: 1rem;
             background-color: transparent !important;
         }
     }
-
 `
 export const Content = ({ Icon, size, color }) => {
+    const { inpWord } = useContext(MyContext)
     return (
         <StyledContent>
             <ul>
-                <li><h1>Keyboard</h1></li>
+                <li><h1>{inpWord.word}</h1></li>
                 <li> <button>  {Icon ? <Icon size={size} color={color} /> : <></>} </button> </li>
             </ul>
             <span>
-                <h1>/ki:bod/</h1>
+            {/* <h1>{Array.isArray(inpWord.phonetics) && inpWord.phonetics[2] && inpWord.phonetics[2].text}</h1> */}
+            {/* <h1>{inpWord ? inpWord.phonetics[2].text : null}  </h1>  */}
                 <span></span>
             </span>
             <StyledDiv>
@@ -141,7 +141,6 @@ export const Content = ({ Icon, size, color }) => {
                 <ul>
                     <h2>synomyms</h2>
                     <li>Lorem ipsum dolor sit.</li>
-
                 </ul>
             </StyledSpan>
             <StyledDiv>
@@ -155,7 +154,6 @@ export const Content = ({ Icon, size, color }) => {
                     <span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus maxime doloribus architecto iste soluta culpa dolorum velit provident, ea veritatis.</span>
                 </ul>
             </StyledList>
-
         </StyledContent>
     )
 }

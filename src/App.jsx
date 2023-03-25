@@ -8,13 +8,13 @@ import {  TfiVolume } from "react-icons/tfi";
 import { Content } from "./components/content/Content";
 import { MyContext } from "./context/Mycontext";
 import { TfiBook } from "react-icons/tfi";
-
-
+import {  HiMoon, HiOutlineSun } from "react-icons/hi";
 
 function App() {
   const [toggleTheme, settoggleTheme] = useState(theme);
   const [keyboard, setKeyboard] = useState('');
   const [inpWord, setInpWord] = useState('');
+  const [iconTheme, setIconTheme] = useState(toggleTheme === theme ? HiMoon : HiOutlineSun)
 
   const handleKeyboard = (e) => {
     setKeyboard(e.target.value);
@@ -24,20 +24,33 @@ function App() {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${keyboard}`)
       .then((resp) => resp.json())
       .then(data => {
-        data.forEach((data) => {
-          console.log(data.phonetics[0])
-          console.log(data.word)
-          console.log(data.meanings[2].definitions[3])
-          setInpWord(data)
-        })
+          data.map((data) =>{
+            setInpWord(data)
+            console.log(inpWord)
+            console.log(data.word)
+            console.log(data.phonetics)
+            console.log(data.meanings)
+          })
       })
   }
 
   const handleTheme = () => {
     if (toggleTheme === theme) {
       settoggleTheme(darkTheme);
+      setIconTheme(HiOutlineSun);
     } else {
       settoggleTheme(theme);
+      setIconTheme(HiMoon);
+    }
+  }
+  // useEffect(()=> {
+  //   console.log(iconTheme)
+  // },[toggleTheme])
+  const handlekeyBoardEnter = (event) => {
+    if (keyboard !== '' && event.key === "Enter"){
+      handleWord();
+    }else{
+      null
     }
   }
 
@@ -63,10 +76,12 @@ function App() {
   return (
     <ThemeProvider theme={toggleTheme}>
       <GlobalStyle />
-      <MyContext.Provider value={{ handleTheme, handleKeyboard, handleWord }}>
+      <MyContext.Provider value={{ handleTheme, handleKeyboard, handleWord, handlekeyBoardEnter, keyboard, setInpWord, handleWord, inpWord  }}>
         <Container>
-          <Header Icon={TfiBook} size={35} props={'#000c'} />
+          <Header Icon={TfiBook} size={35} color={'#000f'} />
           <SearchBar />
+          {inpWord.word}
+          {/* {inpWord ? inpWord.phonetics[2].text : null} */}
           <Content Icon={TfiVolume} size={55} color={'#0079ff'} />
         </Container>
       </MyContext.Provider>

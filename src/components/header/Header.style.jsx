@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import {  HiMoon } from "react-icons/hi";
+import styled, { ThemeProvider } from "styled-components";
 import { useContext } from "react";
 import { MyContext } from "../../context/Mycontext";
+import {  HiMoon, HiOutlineSun } from "react-icons/hi";
 
 
 const StyledHeader = styled.nav`
@@ -9,9 +9,8 @@ width: 1000px;
 
 ul{
     display: flex;
-    list-style: none;
     justify-content: space-between;
-    padding: 1rem 3rem;
+    padding: 1rem 0;
 
     li{
         display: flex;
@@ -31,7 +30,6 @@ const StyledButton = styled.button`
 `
 
 const Button = ({ Icon, size, children, onClick, color }) => {
-
     return (
       <StyledButton size={size} color={color} onClick={onClick}>
         {Icon ?  <Icon size={size} color={color} /> : <></>}
@@ -40,15 +38,19 @@ const Button = ({ Icon, size, children, onClick, color }) => {
     );
   };
   
-export  const Header = ({ Icon, size, props }) =>{
+export  const Header = ({ Icon, size, color, onClick }) =>{
     const { handleTheme } = useContext(MyContext)
     return(
         <StyledHeader>
             <ul>
-                <li> {Icon ? <Icon size={size} color={props} /> : <></>} </li>
                 <li> 
+                    <Button>
+                        {Icon ? <Icon size={size} color={color}  onClick={onClick}/> : <></>}
+                    </Button>
+                </li>
+                <li>
                     <Button Icon={HiMoon} size={30} onClick={handleTheme}/>
-                 </li>
+                </li>
             </ul>
         </StyledHeader>
     )

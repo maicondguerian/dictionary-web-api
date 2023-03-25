@@ -54,13 +54,15 @@ const SearchIcon = ({ size }) => {
 };
 
 export const SearchBar = () => {
-    const { handleKeyboard, handleWord } = useContext(MyContext);
+    const { handleKeyboard, handleWord, handlekeyBoardEnter } = useContext(MyContext);
     return (
         <StyledWrapper>
             <StyledInput
                 type="text"
                 placeholder="type a word"
                 onChange={handleKeyboard}
+                onKeyDown={handlekeyBoardEnter}
+
             />
             <button onClick={handleWord}>
                 <SearchIcon size="25px" />
