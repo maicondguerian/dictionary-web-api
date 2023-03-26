@@ -20,17 +20,12 @@ function App() {
     setKeyboard(e.target.value);
   }
 
-  const handleWord = () => {
+  const  handleWord = () => {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${keyboard}`)
       .then((resp) => resp.json())
       .then(data => {
-          data.map((data) =>{
-            setInpWord(data)
-            console.log(data)
-            console.log(data.word)
-            console.log(data.phonetics[0].text)
-          })
-      })
+      
+        console.log(data)})
   }
 
   const handleTheme = () => {
@@ -80,7 +75,8 @@ function App() {
           <Header Icon={TfiBook} size={35} color={'#000f'} />
           <SearchBar />
           {inpWord.word}
-          {inpWord ? inpWord.phonetics[2].text : null}
+          {/* {inpWord ? inpWord.phonetics[2].text : null} */}
+          {inpWord ? inpWord : null}
           <Content Icon={TfiVolume} size={55} color={'#0079ff'} />
         </Container>
       </MyContext.Provider>
