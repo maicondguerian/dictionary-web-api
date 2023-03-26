@@ -8,6 +8,7 @@ import { Content } from "./components/content/Content";
 import { MyContext } from "./context/Mycontext";
 import { TfiBook } from "react-icons/tfi";
 import {  HiMoon, HiOutlineSun } from "react-icons/hi";
+import { getWordInformations } from "./api/api";
 
 function App() {
   const [toggleTheme, settoggleTheme] = useState(theme);
@@ -17,14 +18,6 @@ function App() {
 
   const handleKeyboard = (e) => {
     setKeyboard(e.target.value);
-  }
-
-  const handleWord = () => {
-    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${keyboard}`)
-      .then((resp) => resp.json())
-      .then(data => {
-        setWordList(data);
-      })
   }
 
   const handleTheme = () => {
@@ -41,9 +34,10 @@ function App() {
   // },[toggleTheme])
   const handlekeyBoardEnter = (event) => {
     if (keyboard !== '' && event.key === "Enter"){
-      handleWord();
-    }else{
-      null
+      getWordInformations(keyboard)
+      .then(data => {
+        setWordList(data);
+      })
     }
   }
 
@@ -69,7 +63,7 @@ function App() {
   return (
     <ThemeProvider theme={toggleTheme}>
       <GlobalStyle />
-      <MyContext.Provider value={{ handleTheme, handleKeyboard, handleWord, handlekeyBoardEnter, keyboard, wordList, setWordList, handleWord  }}>
+      <MyContext.Provider value={{ handleTheme, handleKeyboard, handlekeyBoardEnter, keyboard, wordList, setWordList }}>
         <Container>
           <Header Icon={TfiBook} size={35} color={'#000f'} />
           <SearchBar />
