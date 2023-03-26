@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
+import { TfiVolume } from "react-icons/tfi";
 import { MyContext } from "../../context/Mycontext";
 
 const StyledContent = styled.div`
@@ -112,17 +113,36 @@ const StyledList = styled.div`
         }
     }
 `
-export const Content = ({ Icon, size, color }) => {
-    const { inpWord } = useContext(MyContext)
+
+const Word = ({ value }) => {
+    let dataPhonectic = value.phonetics.filter(phonetic => {
+        return phonetic.audio.endsWith('.mp3') && phonetic.text && phonetic.text.length > 0;
+    });
+
+    if(dataPhonectic.length > 0) {
+        dataPhonectic = dataPhonectic[0];
+    }
+
+    const playAudio = () => {
+        let audio = new Audio(dataPhonectic.audio);
+        audio.play();
+    }
+
     return (
-        <StyledContent>
+        <>
             <ul>
-                <li><h1>{inpWord.word}</h1></li>
-                <li> <button>  {Icon ? <Icon size={size} color={color} /> : <></>} </button> </li>
+                <li><h1>{value.word}</h1></li>
+                {
+                    dataPhonectic && dataPhonectic.audio  &&
+                    <li> 
+                        <button onClick={playAudio}> 
+                            <TfiVolume size={55} color='#0079ff' />
+                        </button> 
+                    </li>
+                }
             </ul>
             <span>
-            {/* <h1>{Array.isArray(inpWord.phonetics) && inpWord.phonetics[2] && inpWord.phonetics[2].text}</h1> */}
-            {/* <h1>{inpWord ? inpWord.phonetics[2].text : null}  </h1>  */}
+                <h1>{dataPhonectic.text}</h1>
                 <span></span>
             </span>
             <StyledDiv>
@@ -154,6 +174,18 @@ export const Content = ({ Icon, size, color }) => {
                     <span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus maxime doloribus architecto iste soluta culpa dolorum velit provident, ea veritatis.</span>
                 </ul>
             </StyledList>
+        </>
+    )
+}
+
+export const Content = () => {
+    const { wordList } = useContext(MyContext);
+
+    return (
+        <StyledContent>
+            {wordList.map((word, index) =>
+                <Word value={word} key={index} />
+            )}
         </StyledContent>
     )
 }
