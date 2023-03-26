@@ -4,28 +4,20 @@ import { Header } from "./components/header/Header.style"
 import { theme, darkThemeColor } from "./theme/theme"
 import { Container } from "./container/Div.style";
 import { SearchBar } from "./components/search/Input";
-import {  TfiVolume } from "react-icons/tfi";
 import { Content } from "./components/content/Content";
 import { MyContext } from "./context/Mycontext";
 import { TfiBook } from "react-icons/tfi";
 import {  HiMoon, HiOutlineSun } from "react-icons/hi";
+import { getWordInformations } from "./api/api";
 
 function App() {
   const [toggleTheme, settoggleTheme] = useState(theme);
   const [keyboard, setKeyboard] = useState('');
-  const [inpWord, setInpWord] = useState('');
+  const [wordList, setWordList] = useState([]);
   const [iconTheme, setIconTheme] = useState(toggleTheme === theme ? HiMoon : HiOutlineSun)
 
   const handleKeyboard = (e) => {
     setKeyboard(e.target.value);
-  }
-
-  const  handleWord = () => {
-    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${keyboard}`)
-      .then((resp) => resp.json())
-      .then(data => {
-      
-        console.log(data)})
   }
 
   const handleTheme = () => {
@@ -42,9 +34,10 @@ function App() {
   // },[toggleTheme])
   const handlekeyBoardEnter = (event) => {
     if (keyboard !== '' && event.key === "Enter"){
-      handleWord();
-    }else{
-      null
+      getWordInformations(keyboard)
+      .then(data => {
+        setWordList(data);
+      })
     }
   }
 
@@ -70,14 +63,11 @@ function App() {
   return (
     <ThemeProvider theme={toggleTheme}>
       <GlobalStyle />
-      <MyContext.Provider value={{ handleTheme, handleKeyboard, handleWord, handlekeyBoardEnter, keyboard, setInpWord, handleWord, inpWord  }}>
+      <MyContext.Provider value={{ handleTheme, handleKeyboard, handlekeyBoardEnter, keyboard, wordList, setWordList }}>
         <Container>
           <Header Icon={TfiBook} size={35} color={'#000f'} />
           <SearchBar />
-          {inpWord.word}
-          {/* {inpWord ? inpWord.phonetics[2].text : null} */}
-          {inpWord ? inpWord : null}
-          <Content Icon={TfiVolume} size={55} color={'#0079ff'} />
+          <Content />
         </Container>
       </MyContext.Provider>
     </ThemeProvider>
