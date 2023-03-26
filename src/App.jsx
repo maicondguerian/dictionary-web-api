@@ -24,13 +24,19 @@ function App() {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${keyboard}`)
       .then((resp) => resp.json())
       .then(data => {
-          data.map((data) =>{
-            setInpWord(data)
-            console.log(inpWord)
-            console.log(data.word)
-            console.log(data.phonetics)
-            console.log(data.meanings)
+        data.forEach(element => {
+          //console.log(Object.keys(element.phonetics));
+          const data = element.phonetics
+          data.forEach(ajuda => {
+            console.log(ajuda.text)
+            setInpWord(ajuda.text)
           })
+        });
+          // data.map((data) =>{
+          //   setInpWord(data)
+          //   console.log(Object.keys(data))
+          //   //console.log(data.phonetics)
+          // })
       })
   }
 
@@ -81,7 +87,7 @@ function App() {
           <Header Icon={TfiBook} size={35} color={'#000f'} />
           <SearchBar />
           {inpWord.word}
-          {/* {inpWord ? inpWord.phonetics[2].text : null} */}
+          {inpWord ? inpWord : null}
           <Content Icon={TfiVolume} size={55} color={'#0079ff'} />
         </Container>
       </MyContext.Provider>
